@@ -12,8 +12,8 @@ pipeline {
         }
         stage('docker stop container'){
             steps{
-                bat 'docker stop $(docker ps -a -q)'
-                bat 'docker rm $(docker ps -a -q)'
+                powershell 'docker stop $(docker ps -a -q)'
+                powershell 'docker rm $(docker ps -a -q)'
             }
         }
         stage('docker run') {
