@@ -12,8 +12,8 @@ pipeline {
         }
         stage('docker stop container'){
             steps{
-                bat 'docker ps -q --filter ancestor="timbeck1997/jenkins-docker-v1" | xargs -r docker stop'
-                bat 'docker rm -v $(docker ps -a -q -f status=exited)'
+                bat 'docker stop $(docker ps -a -q)'
+                bat 'docker rm $(docker ps -a -q)'
             }
         }
         stage('docker run') {
