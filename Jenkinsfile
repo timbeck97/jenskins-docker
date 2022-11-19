@@ -5,14 +5,14 @@ pipeline {
     }
     stages {
 
-        stage('maven build') {
+        stage('docker build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+                sh 'docker build -t timbeck1997/jenkins-docker-v1 .'
             }
         }
-        stage('maven run') {
+        stage('docker run') {
             steps {
-                sh 'nohup java -jar /var/lib/jenkins/workspace/FACCAT/target/demo-0.0.1-SNAPSHOT.jar &'
+                sh 'docker run --name jenkins-docker-api -p 8089:8089 -itd timbeck1997/jenkins-docker-v1'
 
             }
         }
